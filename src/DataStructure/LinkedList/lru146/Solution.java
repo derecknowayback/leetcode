@@ -78,7 +78,7 @@ class LRUCache {
                 //减少数量
                 contain--;
             }
-            contain++;
+            contain++; //添加个数
         }
         //在里面
         else{
