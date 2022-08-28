@@ -47,6 +47,7 @@ class Node {
 //}
 class Solution {
     public Node copyRandomList(Node head) {
+        //在每个节点后面新建节点
         Node t = head;
         Node dummy = new Node(-10010), cur = dummy;
         Map<Node, Node> map = new HashMap<>();
