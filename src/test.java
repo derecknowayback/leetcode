@@ -3,8 +3,11 @@ import java.util.*;
 
 public class test {
     public static void main(String[] args) {
-        int []num1 = {1,2,3,1,1} ;
-        int []num2 = {0  ,1  , 3 ,  6 ,  7, 8  };
+        String s = "1:end:10";
+        String[] split = s.split(":");
+        for (int i = 0; i < split.length; i++) {
+            System.out.println(split[i]);
+        }
         //System.out.println(new Solution().getNum(num2, 2));
       // System.out.println(new Solution().shipWithinDays(num1,4));
     }
