@@ -1,4 +1,4 @@
-package DataStructure.Tree;
+package DataStructure.Tree.lcat236;
 
 public class LCAT236 {
     public static void main(String[] args) {
