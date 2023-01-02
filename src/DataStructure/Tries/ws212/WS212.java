@@ -1,14 +1,15 @@
-package DataStructure.Tries.tries208;
+package DataStructure.Tries.ws212;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
 
-
-public class Tries208 {
+public class WS212 {
     public static void main(String[] args) {
-        Trie trie = new Trie();
-        trie.insert("apple");
-        trie.search("apple");
+
     }
 }
+
 class Trie {
 
     TreeNode root;
@@ -86,3 +87,47 @@ class Trie {
     }
 }
 
+class Solution {
+    HashSet<String> res;
+
+    static final int[][] directions = {{0,1},{0,-1},{1,0},{-1,0}};
+
+    public List<String> findWords(char[][] board, String[] words) {
+        int len;
+        if(board == null || (len = board.length) == 0) return new ArrayList<>();
+        res = new HashSet<>();
+        Trie trie = new Trie();
+        // 建树
+        for (String word : words) {
+            trie.insert(word);
+        }
+        for (int i = 0; i < len; i++) {
+            for (int j = 0; j < board[i].length; j++) {
+                StringBuilder  builder = new StringBuilder();
+                dfs(trie,builder,board,i,j);
+            }
+        }
+        return new ArrayList<>(res);
+    }
+
+    public void dfs(Trie root,StringBuilder builder,char[][]board,int row,int col){
+        // 检查下标
+        if(root == null || row < 0 || row >= board.length || col < 0 || col >= board[0].length || board[row][col] == '#') return;
+        char c = board[row][col];
+        builder.append(board[row][col]);
+        board[row][col] = '#';
+        String toString = builder.toString();
+        if(!root.startsWith(toString)) {
+            builder.deleteCharAt(builder.length()-1); // 回溯
+            board[row][col] = c;
+            return;
+        }
+        if(root.search(toString)) res.add(toString);
+        for (int i = 0; i < directions.length; i++) {
+            int a = directions[i][0], b = directions[i][1];
+            dfs(root,builder,board,row + a,col + b);
+        }
+        builder.deleteCharAt(builder.length()-1); // 回溯
+        board[row][col] = c;
+    }
+}
