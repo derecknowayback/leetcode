@@ -83,7 +83,6 @@ class Trie {
         }
         return bitmap;
     }
-
 }
 
 class Solution {
