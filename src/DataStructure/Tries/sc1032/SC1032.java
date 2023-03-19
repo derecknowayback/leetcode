@@ -74,9 +74,7 @@ class StreamChecker {
                 }
                 // 如果当前节点没有c
                 else {
-                    TreeNode son;
-                    c = word.charAt(index) - 'a';
-                    son = new TreeNode(index == len - 1 ? 1 : -1, word.charAt(index));
+                    TreeNode son= new TreeNode(index == len - 1 ? 1 : -1, word.charAt(index));
                     ptr.sons[c] = son;
                     index++;
                     ptr = son;
