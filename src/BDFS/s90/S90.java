@@ -1,6 +1,4 @@
-package BFS.s90;
-
-import java.util.List;
+package BDFS.s90;
 
 public class S90 {
 }
