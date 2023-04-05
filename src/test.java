@@ -1,25 +1,52 @@
 
 public class test {
     public static void main(String[] args) {
-        int []arr = new int[]{2,3,1,2,3,3,3,3};
-        new Solution().movesToMakeZigzag(arr);
+        Solution solution = new Solution();
+
+        String a = "abbcccdd", b = "de";
+        System.out.println(solution.maxSequnce(a,b));
+
+        a = "ddddddd";
+        b = "dddddddddddddd";
+        System.out.println(solution.maxSequnce(a,b));
+
+
+        a = "c";
+        b = "d";
+        System.out.println(solution.maxSequnce(a,b));
+
+
+        a = "abcueidheiudeoaededevdb";
+        b = "okkkdednbvsifvuhed";
+        System.out.println(solution.maxSequnce(a,b));
     }
 }
 
 class Solution {
 
-    public int movesToMakeZigzag(int[] nums) {
-        int len = nums.length;
-        int odd = 0, even = 0;
-        for (int i = 0; i < len; i ++) {
-            int left = i == 0 ? 0 : (nums[i - 1] > nums[i] ? 0 : nums[i] - nums[i-1] + 1);
-            int right = i == len - 1 ? 0 : (nums[i+1] > nums[i] ? 0 : nums[i] - nums[i+1] + 1);
-            if(i % 2 == 0){
-                odd += Math.max(left,right);
-            }else{
-                even += Math.max(left,right);
+    String res;
+
+    public String maxSequnce(String a,String b) {
+        res = "";
+        if(a.length() > b.length()) return maxSequnce(b,a);
+        int left = 0, right = a.length();
+        while (left < right){
+            int mid = (left + right) >> 1 ;
+            if(check(a,b,mid))
+                left = mid + 1;
+            else
+                right = mid;
+        }
+        return res;
+    }
+    public boolean check(String a,String b,int len){
+        for (int i = 0; i < len; i++) {
+            String substring = a.substring(i, i + len);
+            if(b.contains(substring)){
+                res = substring;
+                return true;
             }
         }
-        return Math.min(odd,even);
+        return false;
     }
 }
